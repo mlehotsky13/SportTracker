@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en" th:replace="fragments/header :: header"></head>
+
+<body>
+	<div class='sidebar'>
+		<div class="logo">
+			<strong>Sport Tracker</strong>
+		</div>
+
+		<div class="formDiv">
+			<form th:action="@{/filterSportFacilities}" method="GET">
+				<h4>
+					<span class="fa fa-futbol-o"></span> Sport facilities
+				</h4>
+				<table width="100%">
+					<tr>
+						<td colspan="2"><input type="text"
+							class="form-control inputbox" placeholder="Street Name"
+							name="streetName" th:value="${streetName}" /></td>
+					</tr>
+					<tr>
+						<td width="40%" margin-right="5px"><input type="text"
+							class="form-control inputbox" placeholder="Street Number"
+							name="streetNumber" th:value="${streetNumber}" /></td>
+						<td width="40%"><input type="text"
+							class="form-control inputbox" placeholder="Distance (m)"
+							name="distance" th:value="${distance}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<!-- <h4>
+								<i class="fa fa-futbol-o" aria-hidden="true"></i> Filter by
+								Sport type
+							</h4> -->
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><select class="sportSelect" name="sport">
+								<option value="" selected>all sports</option>
+								<th:block th:each="sport : ${sports}">
+									<option th:text="${sport}" th:value="${sport}"
+										th:selected="${selectedSport==sport}" />
+								</th:block>
+						</select>
+					</tr>
+					<tr>
+						<td><input type="submit" class="btn btn-default"
+							value="Filter" /></td>
+					</tr>
+				</table>
+			</form>
+			<form th:action="@{/filterOutdoorPlaygrounds}" method="GET">
+				<h4>
+					<i class="fa fa-vector-square"></i> Outdoor playgrounds
+				</h4>
+				<table width="100%">
+					<tr>
+						<td width="40%" margin-right="5px"><input type="text"
+							class="form-control inputbox" placeholder="Area from (m2)"
+							name="areaFrom" th:value="${areaFrom}" /></td>
+						<td width="40%"><input type="text"
+							class="form-control inputbox" placeholder="Area to (m2)"
+							name="areaTo" th:value="${areaTo}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><select class="surfaceSelect" name="surface">
+								<option value="" selected>all surfaces</option>
+								<th:block th:each="surface : ${surfaces}">
+									<option th:text="${surface}" th:value="${surface}"
+										th:selected="${selectedSurface==surface}" />
+								</th:block>
+						</select>
+					</tr>
+					<tr>
+						<td><input type="submit" class="btn btn-default"
+							value="Filter" /></td>
+					</tr>
+				</table>
+			</form>
+			<form th:action="@{/filterCycleRoads}" method="GET">
+				<h4>
+					<i class="fa fa-road"></i> Cycling routes
+				</h4>
+				<table width="100%">
+					<tr>
+						<td width="40%" margin-right="5px"><input type="text"
+							class="form-control inputbox" placeholder="Length from (m)"
+							name="lengthFrom" th:value="${lengthFrom}" /></td>
+						<td width="40%"><input type="text"
+							class="form-control inputbox" placeholder="Length to (m)"
+							name="lengthTo" th:value="${lengthTo}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="checkbox"
+							name="filterExcavations" value="true"
+							th:checked="${filterExcavations}" />&nbsp;<label
+							class="checkboxLabel">Filter out routes with excavations</span></td>
+					</tr>
+					<tr>
+						<td><input type="submit" class="btn btn-default"
+							value="Filter" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<div id='map' class='map pad2'></div>
+
+	<script th:inline="javascript">
+		var geoJsonString = /*[[${mapData}]]*/'';
+		var geoJson = JSON.parse(geoJsonString);
+
+		L.mapbox.accessToken = 'pk.eyJ1IjoibWxlaG90c2t5MTMiLCJhIjoiY2ptNmxvdHE5M3k5YjNxcW5rZm5ucDB3dyJ9.1XFcU0iJXMp5RunUsszt_w';
+		var map = L.mapbox.map('map').setView([ 37.755753, -122.443650 ], 12);
+		L.mapbox.styleLayer(
+				'mapbox://styles/mlehotsky13/cjotz7yg00c3a2spigrqkiyf8').addTo(
+				map);
+
+		var myLayer = L.mapbox.featureLayer().setGeoJSON(geoJson).addTo(map);
+	</script>
+</body>
+
+</html>

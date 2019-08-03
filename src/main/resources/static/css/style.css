@@ -1,0 +1,55 @@
+body {
+	background: #2D882D;
+	color: #f8f8f8;
+	font: 500 20px/26px 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+}
+
+h3 {
+	margin-bottom: 10px;
+}
+
+.sidebar {
+	width: 20%;
+	height: 100%;
+	overflow: auto;
+	position: absolute;
+}
+
+.map {
+	border-left: 1px solid #fff;
+	position: absolute;
+	left: 20%;
+	width: 80%;
+	top: 0;
+	bottom: 0;
+}
+
+.logo {
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.formDiv {
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 30px;
+}
+
+table {
+	border-spacing: 5px;
+	border-collapse: separate;
+}
+
+select {
+	width: 100%;
+	color: black;
+}
+
+label.checkboxLabel {
+	font-size: 12px;
+}
