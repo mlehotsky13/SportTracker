@@ -9,14 +9,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'application'
-apply plugin: 'org.springframework.boot'
-
-mainClassName = "sk.stuba.fiit.Application"
-
-bootJar {
-    baseName = 'SportTracker'
-}
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -24,7 +17,7 @@ targetCompatibility = 1.8
 ext {
 	springBootVersion = '2.0.5.RELEASE'
 	webJarsVersion = '4.1.3'
-	lombokVersion = '1.16.18'
+	lombokVersion = '1.18.8'
 	jacksonVersion = '2.9.7'
 }
 
@@ -38,6 +31,8 @@ dependencies {
 		[group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion],
 		[group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion],
 		[group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: springBootVersion],
+		
+		[group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: springBootVersion],
 		
 		// Hot swapping
 		[group: 'org.springframework.boot', name: 'spring-boot-devtools', version: springBootVersion],
@@ -54,5 +49,10 @@ dependencies {
 		
 		// PostgreSQL driver
 		fileTree(dir: 'libs', include: '*.jar')
+	)
+	
+	annotationProcessor(
+		// Lombok
+		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
 	)
 }
