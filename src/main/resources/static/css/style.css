@@ -1,55 +1,89 @@
-body {
-	background: #2D882D;
-	color: #f8f8f8;
-	font: 500 20px/26px 'Helvetica Neue', Helvetica, Arial, Sans-serif;
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
+html {
+    font-size: 12px;
 }
 
-h3 {
-	margin-bottom: 10px;
+h4 {
+    font-size: 1rem;
 }
 
-.sidebar {
-	width: 20%;
-	height: 100%;
-	overflow: auto;
-	position: absolute;
+#sideNav {
+    background-color: #12723d !important;
 }
 
-.map {
-	border-left: 1px solid #fff;
-	position: absolute;
-	left: 20%;
-	width: 80%;
-	top: 0;
-	bottom: 0;
+#navbarSupportedContent {
+    width: 80%;
+    height: 100vh;
+    background-color: inherit;
+    overflow-y: auto;
 }
 
-.logo {
-	width: 100%;
-	text-align: center;
-	margin-top: 30px;
+.navbar-collapse {
+    position: absolute;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 5px;
+    width: 90%;
+    /* box-shadow: 10px 10px 17px -10px rgba(0, 0, 0, 0.75); */
 }
 
-.formDiv {
-	width: 100%;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-top: 30px;
+.navbar-collapse h4 {
+    color: white;
+}
+.navbar-collapse .dropdown-menu {
+    width: 100%;
+    min-width: 100% !important;
+    max-height: 15rem !important;
+    text-align: left;
+    overflow: auto;
 }
 
-table {
-	border-spacing: 5px;
-	border-collapse: separate;
+.btn-white {
+    background-color: white;
 }
 
-select {
-	width: 100%;
-	color: black;
+.navbar-collapse.collapsing {
+    height: auto;
+    -webkit-transition: left 0.3s ease;
+    -o-transition: left 0.3s ease;
+    -moz-transition: left 0.3s ease;
+    transition: left 0.3s ease;
+    left: -100%;
 }
 
-label.checkboxLabel {
-	font-size: 12px;
+.navbar-collapse.show {
+    left: 0;
+    -webkit-transition: left 0.3s ease-in;
+    -o-transition: left 0.3s ease-in;
+    -moz-transition: left 0.3s ease-in;
+    transition: left 0.3s ease-in;
+}
+
+.bg-primary {
+    background-color: #2E8B57 !important;
+}
+
+@media (min-width: 992px) {
+    #navbarSupportedContent {
+        width: 22rem;
+        height: 100vh;
+    }
+    html {
+        font-size: 14px;
+    }
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+#map {
+    min-height: 100vh;
+}
+
+div.bootstrap-select {
+    width: 100% !important;
 }

@@ -2,6 +2,7 @@ package sk.stuba.fiit.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,97 +20,99 @@ import sk.stuba.fiit.util.Utils;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private SportService sportService;
+	@Autowired
+	private SportService sportService;
 
-    @GetMapping("/")
-    public String getAllSportFacilities(Model model) throws SQLException {
-        List<SportPoint> sportPoints = sportService.getSportPointData();
+	@GetMapping("/")
+	public String getAllSportFacilities(Model model) throws SQLException {
+		List<SportPoint> sportPoints = sportService.getSportPointData();
 
-        String sportPointData = Utils.getFeatureCollection(sportPoints);
-        Set<String> sports = sportService.getSports();
-        Set<String> surfaces = sportService.getSurfaces();
+		String sportPointData = Utils.getFeatureCollection(sportPoints);
+		Set<String> sports = sportService.getSports();
+		Set<String> surfaces = sportService.getSurfaces();
 
-        model.addAttribute("mapData", sportPointData);
-        model.addAttribute("sports", sports);
-        model.addAttribute("surfaces", surfaces);
+		model.addAttribute("mapData", sportPointData);
+		model.addAttribute("sports", sports);
+		model.addAttribute("surfaces", surfaces);
 
-        return "index";
-    }
+		return "index";
+	}
 
-    @GetMapping("/filterSportFacilities")
-    public String filterSportFacilities(//
-            @RequestParam("streetName") String streetName, //
-            @RequestParam("streetNumber") String streetNumber, //
-            @RequestParam("distance") String distance, //
-            @RequestParam("sport") String sport, //
-            Model model) throws SQLException {
+	@GetMapping("/filterSportFacilities")
+	public String filterSportFacilities(//
+			@RequestParam("streetName") String streetName, //
+			@RequestParam("streetNumber") String streetNumber, //
+			@RequestParam("distance") String distance, //
+			@RequestParam(value = "sport", required = false) String sport, //
+			Model model) throws SQLException {
 
-        List<SportPoint> sportPoints = sportService.getSportPointData(streetName, streetNumber, distance, sport);
+		List<SportPoint> sportPoints = sportService.getSportPointData(streetName, streetNumber, distance,
+				Optional.ofNullable(sport).orElse(""));
 
-        String sportPointData = Utils.getFeatureCollection(sportPoints);
-        Set<String> sports = sportService.getSports();
-        Set<String> surfaces = sportService.getSurfaces();
+		String sportPointData = Utils.getFeatureCollection(sportPoints);
+		Set<String> sports = sportService.getSports();
+		Set<String> surfaces = sportService.getSurfaces();
 
-        model.addAttribute("mapData", sportPointData);
-        model.addAttribute("sports", sports);
-        model.addAttribute("surfaces", surfaces);
+		model.addAttribute("mapData", sportPointData);
+		model.addAttribute("sports", sports);
+		model.addAttribute("surfaces", surfaces);
 
-        // return request parameters to set elements appropriately afterward
-        model.addAttribute("streetName", streetName);
-        model.addAttribute("streetNumber", streetNumber);
-        model.addAttribute("distance", distance);
-        model.addAttribute("selectedSport", sport);
+		// return request parameters to set elements appropriately afterward
+		model.addAttribute("streetName", streetName);
+		model.addAttribute("streetNumber", streetNumber);
+		model.addAttribute("distance", distance);
+		model.addAttribute("selectedSport", sport);
 
-        return "index";
-    }
+		return "index";
+	}
 
-    @GetMapping("/filterOutdoorPlaygrounds")
-    public String getOutdoorPlaygrounds(//
-            @RequestParam("surface") String surface, //
-            @RequestParam("areaFrom") String areaFrom, //
-            @RequestParam("areaTo") String areaTo, //
-            Model model) {
+	@GetMapping("/filterOutdoorPlaygrounds")
+	public String getOutdoorPlaygrounds(//
+			@RequestParam(value = "surface", required = false) String surface, //
+			@RequestParam("areaFrom") String areaFrom, //
+			@RequestParam("areaTo") String areaTo, //
+			Model model) {
 
-        List<OutdoorPlayground> outdoorPlaygrounds = sportService.getOutdoorPlaygroundsData(areaFrom, areaTo, surface);
+		List<OutdoorPlayground> outdoorPlaygrounds = sportService.getOutdoorPlaygroundsData(areaFrom, areaTo,
+				Optional.ofNullable(surface).orElse(""));
 
-        String outdoorPlaygroundsData = Utils.getFeatureCollection(outdoorPlaygrounds);
-        Set<String> sports = sportService.getSports();
-        Set<String> surfaces = sportService.getSurfaces();
+		String outdoorPlaygroundsData = Utils.getFeatureCollection(outdoorPlaygrounds);
+		Set<String> sports = sportService.getSports();
+		Set<String> surfaces = sportService.getSurfaces();
 
-        model.addAttribute("mapData", outdoorPlaygroundsData);
-        model.addAttribute("sports", sports);
-        model.addAttribute("surfaces", surfaces);
+		model.addAttribute("mapData", outdoorPlaygroundsData);
+		model.addAttribute("sports", sports);
+		model.addAttribute("surfaces", surfaces);
 
-        model.addAttribute("areaFrom", areaFrom);
-        model.addAttribute("areaTo", areaTo);
-        model.addAttribute("selectedSurface", surface);
+		model.addAttribute("areaFrom", areaFrom);
+		model.addAttribute("areaTo", areaTo);
+		model.addAttribute("selectedSurface", surface);
 
-        return "index";
-    }
+		return "index";
+	}
 
-    @GetMapping("/filterCycleRoads")
-    public String getCycleRoads(//
-            @RequestParam("lengthFrom") String lengthFrom, //
-            @RequestParam("lengthTo") String lengthTo, //
-            @RequestParam(value = "filterExcavations", required = false) String filterExcavations, //
-            Model model) {
+	@GetMapping("/filterCycleRoads")
+	public String getCycleRoads(//
+			@RequestParam("lengthFrom") String lengthFrom, //
+			@RequestParam("lengthTo") String lengthTo, //
+			@RequestParam(value = "filterExcavations", required = false) String filterExcavations, //
+			Model model) {
 
-        List<CycleRoad> cycleRoads = sportService.getCycleRoadsData(lengthFrom, lengthTo, filterExcavations);
+		List<CycleRoad> cycleRoads = sportService.getCycleRoadsData(lengthFrom, lengthTo, filterExcavations);
 
-        String cycleRoadsData = Utils.getFeatureCollection(cycleRoads);
-        Set<String> sports = sportService.getSports();
-        Set<String> surfaces = sportService.getSurfaces();
+		String cycleRoadsData = Utils.getFeatureCollection(cycleRoads);
+		Set<String> sports = sportService.getSports();
+		Set<String> surfaces = sportService.getSurfaces();
 
-        model.addAttribute("mapData", cycleRoadsData);
-        model.addAttribute("sports", sports);
-        model.addAttribute("surfaces", surfaces);
+		model.addAttribute("mapData", cycleRoadsData);
+		model.addAttribute("sports", sports);
+		model.addAttribute("surfaces", surfaces);
 
-        // return request parameters to set elements appropriately afterward
-        model.addAttribute("lengthFrom", lengthFrom);
-        model.addAttribute("lengthTo", lengthTo);
-        model.addAttribute("filterExcavations", filterExcavations != null);
+		// return request parameters to set elements appropriately afterward
+		model.addAttribute("lengthFrom", lengthFrom);
+		model.addAttribute("lengthTo", lengthTo);
+		model.addAttribute("filterExcavations", filterExcavations != null);
 
-        return "index";
-    }
+		return "index";
+	}
 }

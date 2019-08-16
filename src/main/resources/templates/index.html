@@ -4,118 +4,146 @@
 <head lang="en" th:replace="fragments/header :: header"></head>
 
 <body>
-	<div class='sidebar'>
-		<div class="logo">
-			<strong>Sport Tracker</strong>
-		</div>
 
-		<div class="formDiv">
+	<nav class="navbar navbar-dark fixed-top bg-primary" id="sideNav">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<span class="navbar-brand">SportTracker</span>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<form th:action="@{/filterSportFacilities}" method="GET">
-				<h4>
-					<span class="fa fa-futbol-o"></span> Sport facilities
-				</h4>
-				<table width="100%">
-					<tr>
-						<td colspan="2"><input type="text"
-							class="form-control inputbox" placeholder="Street Name"
-							name="streetName" th:value="${streetName}" /></td>
-					</tr>
-					<tr>
-						<td width="40%" margin-right="5px"><input type="text"
-							class="form-control inputbox" placeholder="Street Number"
-							name="streetNumber" th:value="${streetNumber}" /></td>
-						<td width="40%"><input type="text"
-							class="form-control inputbox" placeholder="Distance (m)"
-							name="distance" th:value="${distance}" /></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<!-- <h4>
-								<i class="fa fa-futbol-o" aria-hidden="true"></i> Filter by
-								Sport type
-							</h4> -->
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><select class="sportSelect" name="sport">
-								<option value="" selected>all sports</option>
-								<th:block th:each="sport : ${sports}">
-									<option th:text="${sport}" th:value="${sport}"
-										th:selected="${selectedSport==sport}" />
-								</th:block>
+				<div class="row p-2">
+					<div class="col">
+						<h4>
+							<span class="fa fa-futbol-o"></span> Sport facilities
+						</h4>
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Street Name" name="streetName"
+							th:value="${streetName}" />
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Street Number" name="streetNumber"
+							th:value="${streetNumber}" />
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Distance (m)" name="distance"
+							th:value="${distance}" />
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<select id="sportSelect" class="selectpicker" data-live-search="true" name="sport"
+							title="all sports">
+							<option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"
+								th:selected="${selectedSport==sport}" />
 						</select>
-					</tr>
-					<tr>
-						<td><input type="submit" class="btn btn-default"
-							value="Filter" /></td>
-					</tr>
-				</table>
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<button type="submit" class="btn btn-primary">Filter</button>
+					</div>
+				</div>
 			</form>
 			<form th:action="@{/filterOutdoorPlaygrounds}" method="GET">
-				<h4>
-					<i class="fa fa-vector-square"></i> Outdoor playgrounds
-				</h4>
-				<table width="100%">
-					<tr>
-						<td width="40%" margin-right="5px"><input type="text"
-							class="form-control inputbox" placeholder="Area from (m2)"
-							name="areaFrom" th:value="${areaFrom}" /></td>
-						<td width="40%"><input type="text"
-							class="form-control inputbox" placeholder="Area to (m2)"
-							name="areaTo" th:value="${areaTo}" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><select class="surfaceSelect" name="surface">
-								<option value="" selected>all surfaces</option>
-								<th:block th:each="surface : ${surfaces}">
-									<option th:text="${surface}" th:value="${surface}"
-										th:selected="${selectedSurface==surface}" />
-								</th:block>
+				<div class="row p-2">
+					<div class="col">
+						<h4>
+							<span class="fa fa-futbol-o"></span> Outdoor playgrounds
+						</h4>
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Area from (m2)" name="areaFrom"
+							th:value="${areaFrom}" />
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Area to (m2)" name="areaTo"
+							th:value="${areaTo}" />
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<select id="surfaceSelect" class="selectpicker" data-live-search="true" name="surface"
+							title="all surfaces">
+							<option th:each="surface : ${surfaces}" th:value="${surface}" th:text="${surface}"
+								th:selected="${selectedSurface==surface}" />
 						</select>
-					</tr>
-					<tr>
-						<td><input type="submit" class="btn btn-default"
-							value="Filter" /></td>
-					</tr>
-				</table>
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<button type="submit" class="btn btn-primary">Filter</button>
+					</div>
+				</div>
 			</form>
 			<form th:action="@{/filterCycleRoads}" method="GET">
-				<h4>
-					<i class="fa fa-road"></i> Cycling routes
-				</h4>
-				<table width="100%">
-					<tr>
-						<td width="40%" margin-right="5px"><input type="text"
-							class="form-control inputbox" placeholder="Length from (m)"
-							name="lengthFrom" th:value="${lengthFrom}" /></td>
-						<td width="40%"><input type="text"
-							class="form-control inputbox" placeholder="Length to (m)"
-							name="lengthTo" th:value="${lengthTo}" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="checkbox"
-							name="filterExcavations" value="true"
-							th:checked="${filterExcavations}" />&nbsp;<label
-							class="checkboxLabel">Filter out routes with excavations</span></td>
-					</tr>
-					<tr>
-						<td><input type="submit" class="btn btn-default"
-							value="Filter" /></td>
-					</tr>
-				</table>
+				<div class="row p-2">
+					<div class="col">
+						<h4>
+							<span class="fa fa-road"></span> Cycling routes
+						</h4>
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Length from (m)" name="lengthFrom"
+							th:value="${lengthFrom}" />
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="Length to (m)" name="lengthTo"
+							th:value="${lengthTo}" />
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<input type="checkbox" id="excavationsCheckbox" name="filterExcavations" value="true"
+							th:checked="${filterExcavations}">
+						<label class="form-check-label" for="excavationsCheckbox">Filter out routes with
+							excavations</label>
+					</div>
+				</div>
+				<div class="row p-2">
+					<div class="col">
+						<button type="submit" class="btn btn-primary">Filter</button>
+					</div>
+				</div>
 			</form>
 		</div>
+	</nav>
+	<div class="container-fluid p-0">
+		<div id="map"></div>
 	</div>
-	<div id='map' class='map pad2'></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+	<!-- MapBox JavaScript -->
+	<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+
+	<!-- Plugin JavaScript -->
+	<script th:src="@{/js/jquery.easing.min.js}"></script>
+
+	<!-- Custom scripts for this template -->
+	<script th:src="@{/js/sport_tracker.js}"></script>
 
 	<script th:inline="javascript">
 		var geoJsonString = /*[[${mapData}]]*/'';
 		var geoJson = JSON.parse(geoJsonString);
 
 		L.mapbox.accessToken = 'pk.eyJ1IjoibWxlaG90c2t5MTMiLCJhIjoiY2ptNmxvdHE5M3k5YjNxcW5rZm5ucDB3dyJ9.1XFcU0iJXMp5RunUsszt_w';
-		var map = L.mapbox.map('map').setView([ 37.755753, -122.443650 ], 12);
+		var map = L.mapbox.map('map').setView([37.755753, -122.443650], 12);
 		L.mapbox.styleLayer(
-				'mapbox://styles/mlehotsky13/cjotz7yg00c3a2spigrqkiyf8').addTo(
+			'mapbox://styles/mlehotsky13/cjotz7yg00c3a2spigrqkiyf8').addTo(
 				map);
 
 		var myLayer = L.mapbox.featureLayer().setGeoJSON(geoJson).addTo(map);
