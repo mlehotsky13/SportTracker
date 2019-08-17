@@ -1,8 +1,4 @@
 $(document).ready(function () {
-  $(".dropdown-menu a.dropdown-item").click(function () {
-    $(this).closest("div.dropdown").find("span.selected").text($(this).text());
-  });
-
   $("#navbarSupportedContent").css("top", $("#sideNav").outerHeight());
 
   $("body").click(function (e) {
