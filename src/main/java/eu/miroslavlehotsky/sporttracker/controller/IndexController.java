@@ -1,4 +1,4 @@
-package sk.stuba.fiit.controller;
+package eu.miroslavlehotsky.sporttracker.controller;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -11,11 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import sk.stuba.fiit.model.CycleRoad;
-import sk.stuba.fiit.model.OutdoorPlayground;
-import sk.stuba.fiit.model.SportPoint;
-import sk.stuba.fiit.service.SportService;
-import sk.stuba.fiit.util.Utils;
+import eu.miroslavlehotsky.sporttracker.model.CycleRoad;
+import eu.miroslavlehotsky.sporttracker.model.OutdoorPlayground;
+import eu.miroslavlehotsky.sporttracker.model.SportPoint;
+import eu.miroslavlehotsky.sporttracker.service.SportService;
+import eu.miroslavlehotsky.sporttracker.util.Utils;
 
 @Controller
 public class IndexController {

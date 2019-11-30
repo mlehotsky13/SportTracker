@@ -1,4 +1,4 @@
-package sk.stuba.fiit.service;
+package eu.miroslavlehotsky.sporttracker.service;
 
 import java.util.List;
 import java.util.Set;
@@ -9,12 +9,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import sk.stuba.fiit.model.CycleRoad;
-import sk.stuba.fiit.model.OutdoorPlayground;
-import sk.stuba.fiit.model.Point;
-import sk.stuba.fiit.model.Position;
-import sk.stuba.fiit.model.SportPoint;
-import sk.stuba.fiit.repository.PointRepository;
+import eu.miroslavlehotsky.sporttracker.model.CycleRoad;
+import eu.miroslavlehotsky.sporttracker.model.OutdoorPlayground;
+import eu.miroslavlehotsky.sporttracker.model.Point;
+import eu.miroslavlehotsky.sporttracker.model.Position;
+import eu.miroslavlehotsky.sporttracker.model.SportPoint;
+import eu.miroslavlehotsky.sporttracker.repository.PointRepository;
 
 @Service
 public class SportService {

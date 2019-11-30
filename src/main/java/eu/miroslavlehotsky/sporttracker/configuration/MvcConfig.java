@@ -1,4 +1,4 @@
-package sk.stuba.fiit.configuration;
+package eu.miroslavlehotsky.sporttracker.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

@@ -1,4 +1,4 @@
-package sk.stuba.fiit.util;
+package eu.miroslavlehotsky.sporttracker.util;
 
 import java.io.IOException;
 import java.util.List;

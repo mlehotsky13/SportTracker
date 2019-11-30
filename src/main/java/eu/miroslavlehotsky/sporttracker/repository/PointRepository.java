@@ -1,4 +1,4 @@
-package sk.stuba.fiit.repository;
+package eu.miroslavlehotsky.sporttracker.repository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,13 +18,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-import sk.stuba.fiit.model.CycleRoad;
-import sk.stuba.fiit.model.LineString;
-import sk.stuba.fiit.model.OutdoorPlayground;
-import sk.stuba.fiit.model.Point;
-import sk.stuba.fiit.model.Polygon;
-import sk.stuba.fiit.model.Position;
-import sk.stuba.fiit.model.SportPoint;
+import eu.miroslavlehotsky.sporttracker.model.CycleRoad;
+import eu.miroslavlehotsky.sporttracker.model.LineString;
+import eu.miroslavlehotsky.sporttracker.model.OutdoorPlayground;
+import eu.miroslavlehotsky.sporttracker.model.Point;
+import eu.miroslavlehotsky.sporttracker.model.Polygon;
+import eu.miroslavlehotsky.sporttracker.model.Position;
+import eu.miroslavlehotsky.sporttracker.model.SportPoint;
 
 @Repository
 public class PointRepository {

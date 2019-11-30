@@ -1,4 +1,4 @@
-package sk.stuba.fiit.model;
+package eu.miroslavlehotsky.sporttracker.model;
 
 import java.util.Arrays;
 
