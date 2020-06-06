@@ -1,4 +1,4 @@
-# Prehľad aplikácie
+# SportTracker
 
 Táto aplikácia zobrazuje športové objekty. Kľúčové funkcionality aplikácie:
 - vyhľadanie športových objektov na základe vzdialenosti od zadanej adresy
