@@ -2,7 +2,7 @@
 
 set -e
 
-export VERSION=$RELEASE_NUMBER.$TRAVIS_BUILD_NUMBER
+export VERSION=v$RELEASE_NUMBER.$TRAVIS_BUILD_NUMBER
 
 if [[ $TRAVIS_BRANCH == "master" ]]; then
     git config user.email "mlehotsky13@gmail.com"
