@@ -6,7 +6,7 @@ $(document).ready(function () {
       var targetObj = $(e.target);
 
       if ($(e.target) !== $("#navbarSupportedContent") && $("#navbarSupportedContent").has(targetObj).length === 0 && $(".navbar-toggler").has(targetObj).length === 0) {
-        $("#navbarSupportedContent").removeClass('show');
+        $("#navbarSupportedContent").removeClass("show");
       }
     }
   });

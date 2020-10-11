@@ -3,12 +3,13 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/92566f3a931849b292ce7889e22e30e9)](https://app.codacy.com/gh/mlehotsky13/SportTracker?utm_source=github.com&utm_medium=referral&utm_content=mlehotsky13/SportTracker&utm_campaign=Badge_Grade)
 
 Táto aplikácia zobrazuje športové objekty. Kľúčové funkcionality aplikácie:
-- vyhľadanie športových objektov na základe vzdialenosti od zadanej adresy
-- vyhľadanie športových objektov na základe vybraného športu
-- vyhľadanie vonkajších ihrísk podľa zadaného povrchu
-- vyhľadanie vonkajších ihrísk na základe plochy ihriska
-- vyhľadanie cyklistických ciest na základe dĺžky
-- vyhľadanie cyklistických ciest bez prebiehajúcich výkopových prác v ich blízkosti
+
+-   vyhľadanie športových objektov na základe vzdialenosti od zadanej adresy
+-   vyhľadanie športových objektov na základe vybraného športu
+-   vyhľadanie vonkajších ihrísk podľa zadaného povrchu
+-   vyhľadanie vonkajších ihrísk na základe plochy ihriska
+-   vyhľadanie cyklistických ciest na základe dĺžky
+-   vyhľadanie cyklistických ciest bez prebiehajúcich výkopových prác v ich blízkosti
 
 # Architektúra aplikácie
 
@@ -24,10 +25,10 @@ Frontendová časť je realizovaná prostredníctvom frameworku thymeleaf a v ň
 
 ## Vytvorenie databázy
 
-1. Stiahnutie PostgreSQL databázy s nainštalovaním PostGIS rozšírenia.
-2. Vytvoril som databázu gis a aktivoval pre ňu rozšírenie postgis.
-3. Pre zisk dát som použil nástroj OpenStreetMap, v ktorom som nastavil viewport na oblasť môjho záujmu a teda mesta San Francisco, následne som dal dáta z oblasti exportovať a stiahnuť
-4. Stiahnuté dáta z OpenStreetMap boli vo formáte XML, stiahol a nainštaloval som nástroj osm2pgsql, ktorý z XML dát vytvoril príslušné tabuľky v mnou vytvorenej databáze gis
+1.  Stiahnutie PostgreSQL databázy s nainštalovaním PostGIS rozšírenia.
+2.  Vytvoril som databázu gis a aktivoval pre ňu rozšírenie postgis.
+3.  Pre zisk dát som použil nástroj OpenStreetMap, v ktorom som nastavil viewport na oblasť môjho záujmu a teda mesta San Francisco, následne som dal dáta z oblasti exportovať a stiahnuť
+4.  Stiahnuté dáta z OpenStreetMap boli vo formáte XML, stiahol a nainštaloval som nástroj osm2pgsql, ktorý z XML dát vytvoril príslušné tabuľky v mnou vytvorenej databáze gis
 
 ## Výber a import datasetu
 
@@ -37,20 +38,21 @@ Stiahnutý dataset vo formáte CSV som ešte upravil vymazaním atribútov, ktor
 ## SQL dopyty a optimalizácia
 
 ### Dáta pre filtre
+
 Pre selekty vo filter sekciách pre 1. a 2. scenár, ktoré listujú dostupné športy a povrchy ihrísk som vytvoril 2 samostatné tabuľky: `sports` a `surfaces`, pre optimalizáciu získavania týchto dát.
 
 ### Dáta pre mapu
 
 Každý z 3 spomenutých scenárov má vlastný SQL dopyt, ktorý realizuje zisk potrebných dát. Každý z týchto dopytov som sa snažil čo najlepšie optimalizovať. Jednotlivé optimalizačné kroky sú krátko spomenuté tu, pre podrobnejší opis aj s uvedenými hodnotami Total Costov pred a po optimalizácii dopytov pozri [tu](Dokumentacia/PDT_project.pdf):
 
-- GIN index `polygon_sports` na stĺpci `string_to_array(sport, ';'::text)` v tabuľke `planet_osm_polygon`
-- GIN index `point_sports` na stĺpci `string_to_array(sport, ';'::text)` v tabuľke `planet_osm_point`
-- GIST index `polygon_geography` na stĺpci `(st_transform(st_centroid(way), 4326))::geography` v tabuľke `planet_osm_polygon`
-- GIST index `point_geography` na stĺpci `(st_transform(way, 4326))::geography` v tabuľke `planet_osm_point`
-- multicolumn BTree index `polygon_leisure_area_surface` na stĺpcoch `leisure`, `st_area((st_transform(way, 4326))::geography)`, `surface` v tabuľke `planet_osm_polygon`
-- BTree index `line_route` na stĺpci `route` v tabuľke `planet_osm_line`
-- BTree index `line_length` na stĺpci `st_length(st_transform(way, 4326))::geography` v tabuľke `planet_osm_line`
-- multicolumn BTree index `excavations_status_start_end` na stĺpcoch `permit_start_date::date`, `permit_end_date::date` v tabuľke `excavations`
+-   GIN index `polygon_sports` na stĺpci `string_to_array(sport, ';'::text)` v tabuľke `planet_osm_polygon`
+-   GIN index `point_sports` na stĺpci `string_to_array(sport, ';'::text)` v tabuľke `planet_osm_point`
+-   GIST index `polygon_geography` na stĺpci `(st_transform(st_centroid(way), 4326))::geography` v tabuľke `planet_osm_polygon`
+-   GIST index `point_geography` na stĺpci `(st_transform(way, 4326))::geography` v tabuľke `planet_osm_point`
+-   multicolumn BTree index `polygon_leisure_area_surface` na stĺpcoch `leisure`, `st_area((st_transform(way, 4326))::geography)`, `surface` v tabuľke `planet_osm_polygon`
+-   BTree index `line_route` na stĺpci `route` v tabuľke `planet_osm_line`
+-   BTree index `line_length` na stĺpci `st_length(st_transform(way, 4326))::geography` v tabuľke `planet_osm_line`
+-   multicolumn BTree index `excavations_status_start_end` na stĺpcoch `permit_start_date::date`, `permit_end_date::date` v tabuľke `excavations`
 
 # Scenáre
 
@@ -112,3 +114,5 @@ Príklad športového objektu vráteného v odpovedi pre 1. scenár.
         "marker-symbol": "circle"
     }
 }
+
+```
