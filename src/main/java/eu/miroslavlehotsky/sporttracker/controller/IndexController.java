@@ -38,7 +38,7 @@ public class IndexController {
 		return "index";
 	}
 
-	@GetMapping("/filterSportFacilities")
+	@GetMapping("/facilities")
 	public String filterSportFacilities(//
 			@RequestParam("streetName") String streetName, //
 			@RequestParam("streetNumber") String streetNumber, //
@@ -66,7 +66,7 @@ public class IndexController {
 		return "index";
 	}
 
-	@GetMapping("/filterOutdoorPlaygrounds")
+	@GetMapping("/playgrounds")
 	public String getOutdoorPlaygrounds(//
 			@RequestParam(value = "surface", required = false) String surface, //
 			@RequestParam("areaFrom") String areaFrom, //
@@ -91,7 +91,7 @@ public class IndexController {
 		return "index";
 	}
 
-	@GetMapping("/filterCycleRoads")
+	@GetMapping("/cycling-routes")
 	public String getCycleRoads(//
 			@RequestParam("lengthFrom") String lengthFrom, //
 			@RequestParam("lengthTo") String lengthTo, //
