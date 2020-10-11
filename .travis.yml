@@ -1,0 +1,8 @@
+language: java
+jdk:
+- openjdk8
+
+script:
+- ./gradlew clean build
+- export RELEASE_NUMBER=1
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./deploy/prepare-release.sh; fi
