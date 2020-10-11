@@ -78,15 +78,15 @@ V treťom scenári je realizované zobrazenie cyklistických ciest. Tomuto scen�
 
 **Vyhľadanie športovísk podľa vzdialenosti a športu**
 
-`GET /filterSportFacilities?streetName=Cabrillo+Street&streetNumber=&distance=300&sport=tennis`
+`GET /facilities?streetName=Cabrillo+Street&streetNumber=&distance=300&sport=tennis`
 
 **Vyhľadanie vonkajších ihrísk podľa plochy a povrchu**
 
-`GET /filterOutdoorPlaygrounds?areaFrom=500&areaTo=2000&surface=grass`
+`GET /playgrounds?areaFrom=500&areaTo=2000&surface=grass`
 
 **Vyhľadanie cyklistických ciest podľa dĺžky a bez v blízkosti prebiehajúcich výkopových prác**
 
-`GET /filterCycleRoads?lengthFrom=5000&lengthTo=7000&filterExcavations=true`
+`GET /cycling-routes?lengthFrom=5000&lengthTo=7000&filterExcavations=true`
 
 ## Odpoveď
 
