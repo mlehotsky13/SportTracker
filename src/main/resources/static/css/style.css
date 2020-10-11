@@ -25,7 +25,6 @@ h4 {
   padding-bottom: 15px;
   padding-top: 5px;
   width: 90%;
-  /* box-shadow: 10px 10px 17px -10px rgba(0, 0, 0, 0.75); */
 }
 
 .navbar-collapse h4 {
@@ -62,7 +61,7 @@ h4 {
 }
 
 .bg-primary {
-  background-color: #2E8B57 !important;
+  background-color: #2e8b57 !important;
 }
 
 @media (min-width: 992px) {
