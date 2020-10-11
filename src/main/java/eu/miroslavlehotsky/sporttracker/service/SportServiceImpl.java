@@ -1,9 +1,11 @@
 package eu.miroslavlehotsky.sporttracker.service;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +23,9 @@ public class SportServiceImpl implements SportService {
 
 	@Autowired
 	private PointRepository pointRepository;
+
+	@Value("${google.api.key}")
+	private String googleApiKey;
 
 	@Override
 	public List<SportPoint> getSportPointData() {
@@ -68,8 +73,9 @@ public class SportServiceImpl implements SportService {
 
 	private Position getAddressPosition(String streetName, String streetNumber) {
 		RestTemplate restTemplate = new RestTemplate();
-		JsonNode response = restTemplate.getForObject("https://maps.googleapis.com/maps/api/geocode/json?address="
-				+ streetName + "+" + streetNumber + "&key=AIzaSyAIMXKlqO0IaVdKL8HXCLTejdc7PzVpK50", JsonNode.class);
+		String urlFormat = "https://maps.googleapis.com/maps/api/geocode/json?address={0}+{1}&key={2}";
+		String url = MessageFormat.format(urlFormat, streetName, streetNumber, googleApiKey);
+		JsonNode response = restTemplate.getForObject(url, JsonNode.class);
 
 		JsonNode location = response.findValue("location");
 		return new Position(location.get("lat").asDouble(), location.get("lng").asDouble());
