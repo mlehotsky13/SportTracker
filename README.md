@@ -1,5 +1,7 @@
 # SportTracker
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/92566f3a931849b292ce7889e22e30e9)](https://app.codacy.com/gh/mlehotsky13/SportTracker?utm_source=github.com&utm_medium=referral&utm_content=mlehotsky13/SportTracker&utm_campaign=Badge_Grade)
+
 Táto aplikácia zobrazuje športové objekty. Kľúčové funkcionality aplikácie:
 - vyhľadanie športových objektov na základe vzdialenosti od zadanej adresy
 - vyhľadanie športových objektov na základe vybraného športu
