@@ -2,7 +2,6 @@ package eu.miroslavlehotsky.sporttracker.service;
 
 import java.util.List;
 import java.util.Set;
-
 import eu.miroslavlehotsky.sporttracker.model.CycleRoad;
 import eu.miroslavlehotsky.sporttracker.model.OutdoorPlayground;
 import eu.miroslavlehotsky.sporttracker.model.SportPoint;

@@ -4,13 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import eu.miroslavlehotsky.sporttracker.model.CycleRoad;
 import eu.miroslavlehotsky.sporttracker.model.OutdoorPlayground;
 import eu.miroslavlehotsky.sporttracker.model.SportPoint;
@@ -46,8 +44,7 @@ public class IndexController {
 			@RequestParam(value = "sport", required = false) String sport, //
 			Model model) throws SQLException {
 
-		List<SportPoint> sportPoints = sportService.getSportPointData(streetName, streetNumber, distance,
-				Optional.ofNullable(sport).orElse(""));
+		List<SportPoint> sportPoints = sportService.getSportPointData(streetName, streetNumber, distance, Optional.ofNullable(sport).orElse(""));
 
 		String sportPointData = Utils.getFeatureCollection(sportPoints);
 		Set<String> sports = sportService.getSports();
@@ -73,8 +70,8 @@ public class IndexController {
 			@RequestParam("areaTo") String areaTo, //
 			Model model) {
 
-		List<OutdoorPlayground> outdoorPlaygrounds = sportService.getOutdoorPlaygroundsData(areaFrom, areaTo,
-				Optional.ofNullable(surface).orElse(""));
+		List<OutdoorPlayground> outdoorPlaygrounds =
+				sportService.getOutdoorPlaygroundsData(areaFrom, areaTo, Optional.ofNullable(surface).orElse(""));
 
 		String outdoorPlaygroundsData = Utils.getFeatureCollection(outdoorPlaygrounds);
 		Set<String> sports = sportService.getSports();

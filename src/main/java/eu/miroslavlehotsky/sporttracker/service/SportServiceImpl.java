@@ -3,14 +3,11 @@ package eu.miroslavlehotsky.sporttracker.service;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import com.fasterxml.jackson.databind.JsonNode;
-
 import eu.miroslavlehotsky.sporttracker.model.CycleRoad;
 import eu.miroslavlehotsky.sporttracker.model.OutdoorPlayground;
 import eu.miroslavlehotsky.sporttracker.model.Point;
@@ -33,10 +30,8 @@ public class SportServiceImpl implements SportService {
 	}
 
 	@Override
-	public List<SportPoint> getSportPointData(String streetName, String streetNumber, String distance,
-			String... sports) {
-		Point p = !streetName.isEmpty() ? new Point(getAddressPosition(streetName, streetNumber))
-				: new Point(new Position(37.765250, -122.452355));
+	public List<SportPoint> getSportPointData(String streetName, String streetNumber, String distance, String... sports) {
+		Point p = !streetName.isEmpty() ? new Point(getAddressPosition(streetName, streetNumber)) : new Point(new Position(37.765250, -122.452355));
 		double d = !distance.isEmpty() ? Double.parseDouble(distance) : Double.MAX_VALUE;
 		String[] s = sports.length == 1 && sports[0].isEmpty() ? new String[] {} : sports;
 

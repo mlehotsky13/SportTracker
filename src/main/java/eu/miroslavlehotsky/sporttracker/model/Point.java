@@ -6,14 +6,14 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Point {
-    private Position coordinates;
+	private Position coordinates;
 
-    @Override
-    public String toString() {
-        return "{\"type\": \"Point\", \"coordinates\": " + coordinates + "}";
-    }
+	@Override
+	public String toString() {
+		return "{\"type\": \"Point\", \"coordinates\": " + coordinates + "}";
+	}
 
-    public String reverseCoordinatestoString() {
-        return "{\"type\": \"Point\", \"coordinates\": " + coordinates.reverseCoordinatesToString() + "}";
-    }
+	public String reverseCoordinatestoString() {
+		return "{\"type\": \"Point\", \"coordinates\": " + coordinates.reverseCoordinatesToString() + "}";
+	}
 }
